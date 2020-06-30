@@ -1,0 +1,61 @@
+
+
+<form [formGroup]="employeeForm" (ngSubmit)="OnSubmit()">
+  <div>
+    <label>
+      Name
+      <input type="text" formControlName="name">
+    </label>
+  </div>
+  <div style="margin-top: 20px">
+    <label>
+      Age
+      <input type="text" formControlName="age">
+    </label>
+  </div>
+  <div style="margin-top: 20px">
+    <label>
+      HiringDate
+      <input type="date" formControlName="hiringDate">
+    </label>
+  </div>
+  <div>
+    <button type="submit" [disabled]="!employeeForm.valid">Save</button>
+  </div>
+</form>
+
+
+
+<h1>Employee List</h1>
+
+<p *ngIf="!EmployeeList"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="EmployeeList">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Age</th>
+      <th>Hiring Date</th>
+      <th>ID</th>
+     
+      <th>
+        Delete Record
+      </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let Employee of EmployeeList">
+
+      <td>{{ Employee.name }}</td>
+      <td>{{ Employee.age }}</td>
+      <td> {{ Employee.hiringDate | date:'medium'}} </td>
+      <td>{{ Employee.id }}</td>
+  
+      <td>
+        <button type="button" (click)="DeleteEmployee(Employee.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
